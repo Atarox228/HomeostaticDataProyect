@@ -1,0 +1,14 @@
+__________________________________________________________________________________
+Estimado lector:
+
+Para revisar todos los documentos dento de este github de manera sencilla debera 
+tener los siguientes elementos instalados en su lugar de trabajo, preferiblemente 
+una computadora de escritorio o portatil
+----------------------------------------------------------------------------------
+Elementos:
+  - Editor de codigo (sublime text 3, visual studio code, etc)
+  - Python (utlima version)
+  - Editor de texto ( que permita leer archivos .docx)
+  - Proyect Gantt
+  - Cualquier programa capaz de extraer archivos .zip (Winrar, 7-zip, etc)
+___________________________________________________________________________________
