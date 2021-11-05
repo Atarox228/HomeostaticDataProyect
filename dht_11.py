@@ -1,31 +1,31 @@
-#https://tutorials-raspberrypi.com/log-raspberry-pi-sensor-data-with-thingspeak-and-analyze-it/
-import thingspeak
-import time
-import Adafruit_DHT
- 
-channel_id = 1406926  # PUT CHANNEL ID HERE
-write_key  = 'J9HMAYLVZ96ZNRHW' # PUT YOUR WRITE KEY HERE
-read_key   = 'Q2ZP3AP8KLNN0VAY' # PUT YOUR READ KEY HERE
-pin = 4
-sensor = Adafruit_DHT.DHT22
- 
-def measure(channel):
-    try:
-        humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
-        # write
-        response = channel.update({'field1': temperature, 'field2': humidity})
-        
-        # read
-        read = channel.get({})
-        print("Read:", read)
-        
-    except:
-        print("connection failed")
- 
- 
-if __name__ == "__main__":
-    channel = thingspeak.Channel(id=channel_id, write_key=write_key, api_key=read_key)
-    while True:
-        measure(channel)
-        # free account has an api limit of 15sec
-        time.sleep(15)
+import httplib, urllib  
+import time  
+import Adafruit_DHT  
+sleep = 30 # how many seconds to sleep between posts to the channel  
+key = '****************'  # Write API key 
+  
+humidity, temperature = Adafruit_DHT.read_retry(11, 27)  # GPIO27 (BCM notation)  
+  
+  
+#Report Raspberry Pi internal temperature to Thingspeak Channel  
+def thermometer():  
+    while True:        
+        headers = {"Content-typZZe": "application/x-www-form-urlencoded","Accept": "text/plain"}  
+        conn = httplib.HTTPConnection("api.thingspeak.com:80")  
+        try:  
+            params = urllib.urlencode({'field1': temperature, 'key':key }) # channel name is field1 or field 2
+            conn.request("POST", "/update", params, headers)  
+            response = conn.getresponse()  
+            print humidity  
+        print temperature  
+            #print response.status, response.reason  
+            data = response.read()  
+            conn.close()  
+        except:  
+            print "connection failed"  
+        break  
+#sleep for desired amount of time  
+if __name__ == "__main__":  
+        while True:  
+                thermometer()  
+                time.sleep(sleep) 
