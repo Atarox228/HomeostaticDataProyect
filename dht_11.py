@@ -1,13 +1,13 @@
 import httplib, urllib  
 import time  
 import Adafruit_DHT  
-sleep = 30 # how many seconds to sleep between posts to the channel  
+sleep = 30 # Cantidad de segundo entre la subida de datos 
 key = 'J9HMAYLVZ96ZNRHW'  # Write API key 
   
 humidity, temperature = Adafruit_DHT.read_retry(11, 27)  # GPIO27 (BCM notation)  
   
   
-#Report Raspberry Pi internal temperature to Thingspeak Channel  
+#Temperatura   
 def thermometer():  
     while True:        
         headers = {"Content-typZZe": "application/x-www-form-urlencoded","Accept": "text/plain"}  
@@ -26,7 +26,7 @@ def thermometer():
         except:  
             print ("connection failed")  
         break  
-#sleep for desired amount of time  
+
 if __name__ == "__main__":  
         while True:  
                 thermometer()  
